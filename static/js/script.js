@@ -14,7 +14,6 @@ output.innerHTML = `Hai ancora <strong> ${vite} </strong> vite`;
 function handleClick() {
     const userField = document.querySelector("#guess");
     const userNumber = parseInt(userField.value);
-    console.log(guessNumber)
 
     if (vite > 0) {
         if (isNaN(userNumber) || userNumber < 0 || userNumber > 100) {
