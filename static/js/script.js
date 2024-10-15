@@ -1,43 +1,43 @@
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+function getRandomInt(min = 0, max = 100) {
+    let number = Math.random()
+    number = number * (max - min) + min
+    return Math.floor(number);
 }
 
-function sanitize(input) {
-    let sanitizedInput = parseInt(input);
-    if (isNaN(sanitizedInput)) {
-        return null;
-    } else {
-        return sanitizedInput;
-    }
-}
 
-const max_vite = 5;
-let vite = 0;
-const r = getRandomInt(100);
+let vite = 5;
+const guessNumber = getRandomInt(0, 100);
 
-let userField = document.querySelector("#guess");
 let btn = document.querySelector("#guessBtn");
 
+ let output = document.querySelector('#output');
+ output.innerHTML =`Hai ancora <strong> ${vite} </strong> vite`
+
 function handleClick() {
-    let num = sanitize(userField.value);
+    const userField = document.querySelector("#guess");
+    const userNumber = parseInt(userField.value);
 
-    if (vite < max_vite) {
-        if (num === null) {
-            document.querySelector('#output').innerHTML = "Per favore, inserisci un numero valido.";
-        } else if (num === r) {
-            document.querySelector('#output').innerHTML = "Bravo, hai vinto!";
-        } else {
-            vite++;
-            if (num < r) {
-                document.querySelector('#output').innerHTML = "Troppo piccolo.";
-            } else {
-                document.querySelector('#output').innerHTML = "Troppo grande.";
-            }
+    if (vite > 0){
+        if (isNaN(userNumber) || userNumber < 0 || userNumber > 100 || userNumber == null || userNumber === ""){
+            output.innerHTML = "Completa il campo richiesto correttamenta: Inserisci un numero intero da 1 a 100."
         }
-    }
-
-    if (vite === max_vite) {
-        document.querySelector('#output').innerHTML = "Hai esaurito le vite. Il numero era"  + r + ".";
+        else if (userNumber === guessNumber){
+           output.innerHTML = "Bravo, hai indovinato" ;
+        }
+        else{
+            vite--
+            if (userNumber > guessNumber){
+                    output.innerHTML = "Troppo grande"
+            }
+            else if (userNumber < guessNumber){
+                output.innerHTML = "Troppo piccolo"
+            }
+            output.innerHTML =`Hai ancora <strong> ${vite} </strong> vite`
+        }
+        
+        if (vite === 0) {
+            output.innerHTML = `Hai esaurito le vite. Il numero era  ${guessNumber}.`;
+        }
     }
 }
 
