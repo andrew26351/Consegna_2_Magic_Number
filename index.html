@@ -12,17 +12,8 @@
             font-style: normal;
         }
 
-        body{
-            display: flex;
-            flex-flow: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #CCFFC5;
-        }
-
         #guessBtn{
             font-weight: bold;
-            background-color: #3AE3A8;
             text-align: center;
         }
 
@@ -52,9 +43,45 @@
         ol, p{
             font-size: 16px;
         }
+
+        #element{
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .greenBg{
+            background-color: #CCFFC5;
+        }
+
+        .yellowBg{
+            background-color: yellow;
+        }
+
+        .redBg{
+            background-color: #ff0303;
+        }
+
+
+        .greenBgBtn{
+            background-color: #abfc9f;
+        }
+
+        .yellowBgBtn{
+            background-color: #f5e342;
+        }
+
+        .redBgBtn{
+            background-color: #a30303;
+        }
+
+        .transition{
+            transition: all 2s;
+        }
     </style>
 </head>
-<body>
+<body id="element" class="greenBg" class="transition">
     <h1 class="title inter">Indovina il Numero</h1>
     <ol class="list inter">
         <li>Il computer sceglierà segretamente un numero intero casuale tra 1 e 100</li>
@@ -73,7 +100,7 @@
     <p class="inter">Inserisci il numero magico</p>
     <form>
         <input type="number" id="guess" min="0" max="99">
-        <input type="button" id="guessBtn" value="INDOVINA">
+        <input type="button" id="guessBtn" value="INDOVINA" class="greenBgBtn">
     </form>
     <p id="output"></p>
 
